@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --sidebar-bg: 0 0% 98%;
+    --sidebar-border: 220 13% 91%;
+    --accent: 221 83% 53%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --border: 214.3 31.8% 91.4%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --success: 142 71% 45%;
+    --warning: 38 92% 50%;
+  }
+
+  .dark {
+    --background: 222 47% 8%;
+    --foreground: 210 40% 98%;
+    --sidebar-bg: 222 47% 6%;
+    --sidebar-border: 217 33% 17%;
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --border: 217 33% 17%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --success: 142 71% 45%;
+    --warning: 38 92% 50%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Sidebar scrollbar */
+.sidebar-scroll::-webkit-scrollbar { width: 4px; }
+.sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
+.sidebar-scroll::-webkit-scrollbar-thumb { @apply bg-border rounded-full; }
+
+/* Code block */
+.code-block {
+  @apply font-mono text-sm rounded-lg p-4 overflow-x-auto;
+  background: hsl(222 47% 6%);
+  color: hsl(210 40% 98%);
+}
+
+/* Token chip */
+.token-chip {
+  @apply inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-xs font-mono;
+}
