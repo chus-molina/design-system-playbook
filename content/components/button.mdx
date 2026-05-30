@@ -1,0 +1,130 @@
+---
+title: Button
+description: Los botones permiten al usuario ejecutar una acción o navegar a otra página. Son el elemento interactivo más común del sistema.
+figmaNodeId: "4281-261159"
+---
+
+## Importar
+
+```tsx
+import { Button } from '@/components/ui/Button'
+```
+
+## Uso básico
+
+El botón más común es el **Primary** — úsalo para la acción principal de la pantalla. Solo debe existir uno por vista.
+
+<Preview code={`<Button variant="primary">Guardar cambios</Button>`}>
+  <Btn variant="primary">Guardar cambios</Btn>
+</Preview>
+
+## Variantes
+
+Cada variante tiene un nivel de énfasis diferente. Elige según la importancia de la acción.
+
+<Preview code={`<Button variant="primary">Primary</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="destructive">Destructive</Button>`}>
+  <Btn variant="primary">Primary</Btn>
+  <Btn variant="secondary">Secondary</Btn>
+  <Btn variant="outline">Outline</Btn>
+  <Btn variant="ghost">Ghost</Btn>
+  <Btn variant="destructive">Destructive</Btn>
+</Preview>
+
+<Callout type="tip" title="Jerarquía visual">
+  En una misma pantalla, usa como máximo una acción Primary, una Secondary y una Ghost. Si tienes más de tres botones, algo falla en el flujo.
+</Callout>
+
+## Tamaños
+
+<Preview code={`<Button size="sm">Pequeño</Button>
+<Button size="md">Mediano</Button>
+<Button size="lg">Grande</Button>`}>
+  <Btn size="sm">Pequeño</Btn>
+  <Btn size="md">Mediano</Btn>
+  <Btn size="lg">Grande</Btn>
+</Preview>
+
+## Estados
+
+### Disabled
+
+Usa `disabled` cuando la acción no está disponible. Asegúrate de que el usuario entiende **por qué** está deshabilitado — añade un tooltip o un mensaje explicativo.
+
+<Preview code={`<Button disabled>No disponible</Button>`}>
+  <Btn disabled>No disponible</Btn>
+</Preview>
+
+### Loading
+
+Usa `loading` mientras se procesa una acción asíncrona. El botón se deshabilita automáticamente.
+
+<Preview code={`<Button loading>Guardando...</Button>`}>
+  <Btn loading>Guardando...</Btn>
+</Preview>
+
+## Cuándo usarlo
+
+<UsageRule
+  use={[
+    "La acción principal de la pantalla (formulario, confirmación, CTA)",
+    "Acciones que el usuario puede deshacer después",
+    "Cuando necesitas diferenciar entre acciones de distinto peso",
+    "Para acciones secundarias o terciarias con variantes de menor énfasis"
+  ]}
+  avoid={[
+    "Como link de navegación — usa un componente Link",
+    "Más de un botón Primary por vista",
+    "Texto largo de más de 4 palabras en el label",
+    "Acciones tan frecuentes que interrumpan el flujo (usa un icono clicable)"
+  ]}
+/>
+
+## Do / Don't
+
+<DoDont description="El texto del botón debe describir exactamente la acción que ocurrirá.">
+  <Do label="Usa verbo + objeto específico">
+    <Btn variant="primary">Guardar cambios</Btn>
+    <Btn variant="destructive">Eliminar cuenta</Btn>
+  </Do>
+  <Dont label="Evita textos vagos o genéricos">
+    <Btn variant="primary">Click aquí</Btn>
+    <Btn variant="destructive">Eliminar</Btn>
+  </Dont>
+</DoDont>
+
+<DoDont description="No sobrecargues una misma área con múltiples botones del mismo peso visual.">
+  <Do label="Un Primary, el resto de menor énfasis">
+    <Btn variant="primary">Confirmar pedido</Btn>
+    <Btn variant="outline">Cancelar</Btn>
+  </Do>
+  <Dont label="Dos botones Primary compiten entre sí">
+    <Btn variant="primary">Confirmar</Btn>
+    <Btn variant="primary">Cancelar</Btn>
+  </Dont>
+</DoDont>
+
+## Props
+
+<PropsTable props={[
+  { name: "variant", type: "'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive'", default: "'primary'", description: "Estilo visual del botón. Define su nivel de énfasis." },
+  { name: "size", type: "'sm' | 'md' | 'lg'", default: "'md'", description: "Tamaño del botón. sm para tablas y espacios compactos, lg para CTAs hero." },
+  { name: "loading", type: "boolean", default: "false", description: "Muestra un spinner y deshabilita el botón automáticamente." },
+  { name: "disabled", type: "boolean", default: "false", description: "Deshabilita el botón. Acompaña siempre con explicación de por qué." },
+  { name: "onClick", type: "() => void", description: "Función que se ejecuta al pulsar el botón." },
+  { name: "className", type: "string", description: "Clases CSS adicionales para personalización puntual." }
+]} />
+
+## Accesibilidad
+
+- El botón tiene rol `button` nativo — no uses `div` o `span` como botón.
+- En estado `disabled`, el botón no es focusable. Si necesitas mantener el foco, usa `aria-disabled` en su lugar.
+- Los botones de solo icono deben llevar `aria-label` descriptivo.
+- El estado `loading` debe comunicarse con `aria-busy="true"` y un texto para lectores de pantalla.
+
+<Callout type="warning" title="Botones solo con icono">
+  Si el botón no tiene texto visible, añade siempre `aria-label`. Sin él, los usuarios de lectores de pantalla no saben qué hace el botón.
+</Callout>
