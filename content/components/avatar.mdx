@@ -1,0 +1,116 @@
+---
+title: Avatar
+description: Representación visual compacta de un usuario o entidad. Muestra foto o iniciales como fallback.
+figmaNodeId: "4281-261312"
+---
+
+## Importar
+
+```tsx
+import { Avatar, AvatarGroup } from '@/components/ui/Avatar'
+```
+
+## Uso básico
+
+<Preview code={`<Avatar name="Chus Molina" size="md" />`}>
+  <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">CM</div>
+</Preview>
+
+## Tamaños
+
+<Preview>
+  <div className="flex items-end gap-6">
+    {[
+      { size: "w-7 h-7 text-xs", label: "sm" },
+      { size: "w-9 h-9 text-sm", label: "md" },
+      { size: "w-12 h-12 text-base", label: "lg" },
+      { size: "w-16 h-16 text-lg", label: "xl" }
+    ].map(({ size, label }) => (
+      <div key={label} className="flex flex-col items-center gap-2">
+        <div className={`${size} rounded-full bg-blue-600 flex items-center justify-center text-white font-bold flex-shrink-0`}>CM</div>
+        <span className="text-xs text-gray-400">{label}</span>
+      </div>
+    ))}
+  </div>
+</Preview>
+
+## Con indicador de estado
+
+<Preview>
+  <div className="flex gap-6">
+    {[
+      { color: "bg-green-500", label: "Online" },
+      { color: "bg-yellow-500", label: "Ausente" },
+      { color: "bg-gray-400", label: "Offline" }
+    ].map(({ color, label }) => (
+      <div key={label} className="flex flex-col items-center gap-2">
+        <div className="relative">
+          <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">CM</div>
+          <div className={`absolute bottom-0 right-0 w-3 h-3 rounded-full ${color} ring-2 ring-white`} />
+        </div>
+        <span className="text-xs text-gray-400">{label}</span>
+      </div>
+    ))}
+  </div>
+</Preview>
+
+## Grupo de avatars
+
+<Preview code={`<AvatarGroup avatars={users} max={4} />`}>
+  <div className="flex -space-x-2">
+    {["#2563eb","#7c3aed","#db2777","#059669"].map((color, i) => (
+      <div key={i} className="w-9 h-9 rounded-full ring-2 ring-white flex items-center justify-center text-white font-bold text-xs flex-shrink-0" style={{ background: color }}>
+        {["JG","ML","PR","AT"][i]}
+      </div>
+    ))}
+    <div className="w-9 h-9 rounded-full ring-2 ring-white bg-gray-100 flex items-center justify-center text-xs font-medium text-gray-500">+3</div>
+  </div>
+</Preview>
+
+## Cuándo usarlo
+
+<UsageRule
+  useWhen={[
+    "Identificar visualmente al autor de un contenido (post, comentario, tarea)",
+    "Mostrar los miembros asignados a un proyecto o tarea",
+    "Header de la aplicación para indicar la sesión activa del usuario",
+    "En listas o tablas donde la foto humaniza el contenido"
+  ]}
+  avoidWhen={[
+    "Cuando no hay usuario real asociado — no uses avatars como elementos decorativos genéricos",
+    "Para representar entidades no-personas (usa un icono en su lugar)",
+    "En grupos de más de 5 sin contador — muestra máximo 4 y añade +N"
+  ]}
+/>
+
+## Do / Don't
+
+<DoDont description="Las iniciales del fallback deben formarse con la primera letra del nombre y la del apellido.">
+  <Do label="Iniciales nombre + apellido">
+    <div className="flex gap-2">
+      <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">CM</div>
+      <div className="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-sm">JG</div>
+    </div>
+  </Do>
+  <Dont label="Solo una inicial o nombre completo">
+    <div className="flex gap-2">
+      <div className="w-10 h-10 rounded-full bg-gray-400 flex items-center justify-center text-white font-bold text-sm">C</div>
+      <div className="w-10 h-10 rounded-full bg-gray-400 flex items-center justify-center text-white font-bold text-xs">Chus</div>
+    </div>
+  </Dont>
+</DoDont>
+
+## Props
+
+<PropsTable items={[
+  { name: "src", type: "string | null", description: "URL de la imagen del usuario. Si es null o undefined, muestra las iniciales." },
+  { name: "name", type: "string", required: true, description: "Nombre completo del usuario. Se usa para generar las iniciales y el alt de la imagen." },
+  { name: "size", type: "'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: "Tamaño del avatar: sm=28px, md=36px, lg=48px, xl=64px." },
+  { name: "className", type: "string", description: "Clases adicionales." }
+]} />
+
+## Accesibilidad
+
+- La imagen debe tener `alt` con el nombre completo del usuario.
+- Si el avatar aparece junto al nombre escrito, usa `alt=""` para evitar repetición.
+- Los indicadores de estado necesitan texto alternativo: usa `aria-label="Juan García — Online"`.
