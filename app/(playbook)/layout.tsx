@@ -24,7 +24,7 @@ export default async function PlaybookLayout({ children }: { children: React.Rea
       <Sidebar isAdmin={isAdmin} />
       <div className="flex-1 flex flex-col min-w-0">
         <Header user={user} isAdmin={isAdmin} />
-        <main className="flex-1 p-8 w-full">
+        <main className="flex-1 p-8 max-w-4xl">
           {children}
         </main>
       </div>
