@@ -1,11 +1,11 @@
 import { Check, X } from 'lucide-react'
 
 interface UsageRuleProps {
-  use: string[]
-  avoid: string[]
+  useWhen: string[]
+  avoidWhen: string[]
 }
 
-export function UsageRule({ use, avoid }: UsageRuleProps) {
+export function UsageRule({ useWhen, avoidWhen }: UsageRuleProps) {
   return (
     <div className="my-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div className="rounded-xl border border-green-500/20 bg-green-500/5 p-4">
@@ -13,7 +13,7 @@ export function UsageRule({ use, avoid }: UsageRuleProps) {
           Úsalo cuando...
         </p>
         <ul className="space-y-2">
-          {use.map((item, i) => (
+          {useWhen.map((item, i) => (
             <li key={i} className="flex items-start gap-2 text-sm text-foreground">
               <Check className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
               {item}
@@ -26,7 +26,7 @@ export function UsageRule({ use, avoid }: UsageRuleProps) {
           Evítalo cuando...
         </p>
         <ul className="space-y-2">
-          {avoid.map((item, i) => (
+          {avoidWhen.map((item, i) => (
             <li key={i} className="flex items-start gap-2 text-sm text-foreground">
               <X className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
               {item}

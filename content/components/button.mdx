@@ -69,13 +69,13 @@ Usa `loading` mientras se procesa una acción asíncrona. El botón se deshabili
 ## Cuándo usarlo
 
 <UsageRule
-  use={[
+  useWhen={[
     "La acción principal de la pantalla (formulario, confirmación, CTA)",
     "Acciones que el usuario puede deshacer después",
     "Cuando necesitas diferenciar entre acciones de distinto peso",
     "Para acciones secundarias o terciarias con variantes de menor énfasis"
   ]}
-  avoid={[
+  avoidWhen={[
     "Como link de navegación — usa un componente Link",
     "Más de un botón Primary por vista",
     "Texto largo de más de 4 palabras en el label",
@@ -109,7 +109,7 @@ Usa `loading` mientras se procesa una acción asíncrona. El botón se deshabili
 
 ## Props
 
-<PropsTable props={[
+<PropsTable items={[
   { name: "variant", type: "'primary' | 'secondary' | 'outline' | 'ghost' | 'destructive'", default: "'primary'", description: "Estilo visual del botón. Define su nivel de énfasis." },
   { name: "size", type: "'sm' | 'md' | 'lg'", default: "'md'", description: "Tamaño del botón. sm para tablas y espacios compactos, lg para CTAs hero." },
   { name: "loading", type: "boolean", default: "false", description: "Muestra un spinner y deshabilita el botón automáticamente." },

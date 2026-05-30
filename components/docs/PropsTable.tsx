@@ -7,10 +7,10 @@ interface Prop {
 }
 
 interface PropsTableProps {
-  props: Prop[]
+  items: Prop[]
 }
 
-export function PropsTable({ props }: PropsTableProps) {
+export function PropsTable({ items }: PropsTableProps) {
   return (
     <div className="my-6 border border-border rounded-xl overflow-hidden">
       <div className="px-4 py-2.5 bg-muted border-b border-border">
@@ -27,7 +27,7 @@ export function PropsTable({ props }: PropsTableProps) {
             </tr>
           </thead>
           <tbody className="divide-y divide-border">
-            {props.map(prop => (
+            {items.map(prop => (
               <tr key={prop.name} className="hover:bg-muted/30 transition-colors">
                 <td className="px-4 py-3">
                   <span className="font-mono text-xs text-accent">{prop.name}</span>
