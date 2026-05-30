@@ -12,16 +12,22 @@ interface ComponentDocProps {
   name: string
   description: string
   tabs: Tab[]
+  figmaLink?: React.ReactNode
 }
 
-export function ComponentDoc({ name, description, tabs }: ComponentDocProps) {
+export function ComponentDoc({ name, description, tabs, figmaLink }: ComponentDocProps) {
   const [active, setActive] = useState(tabs[0]?.id)
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-foreground">{name}</h1>
-        <p className="mt-2 text-muted-foreground text-lg">{description}</p>
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold text-foreground">{name}</h1>
+            <p className="mt-2 text-muted-foreground text-lg">{description}</p>
+          </div>
+          {figmaLink && <div className="flex-shrink-0 mt-1">{figmaLink}</div>}
+        </div>
       </div>
 
       <div className="border-b border-border">
