@@ -1,4 +1,3 @@
-import { Figma } from 'lucide-react'
 
 interface FigmaLinkProps {
   url: string
