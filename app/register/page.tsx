@@ -93,7 +93,7 @@ export default function RegisterPage() {
             <Logo className="w-12 h-12" />
           </div>
           <h1 className="text-2xl font-bold text-foreground">Crear cuenta</h1>
-          <p className="text-muted-foreground mt-1 text-sm">Accede al Design System Playbook</p>
+          <p className="text-muted-foreground mt-1 text-sm">Accede al HeroUI Playbook</p>
         </div>
 
         <form onSubmit={handleRegister} className="space-y-4">
