@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight, Layers, Puzzle, Layout } from 'lucide-react'
+import { Logo } from '@/components/layout/Logo'
 
 const sections = [
   {
