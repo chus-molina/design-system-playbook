@@ -66,7 +66,7 @@ export function DocPage({ title, description, figmaUrl, toc, children }: DocPage
           </div>
           {figmaUrl && <div className="flex-shrink-0 mt-1"><FigmaLink url={figmaUrl} /></div>}
         </div>
-        <div className="space-y-1">{children}</div>
+        <div>{children}</div>
       </div>
 
       {toc.length > 0 && (
