@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight, Layers, Puzzle, Layout } from 'lucide-react'
-import { Logo } from '@/components/layout/Logo'
+import { LogoFull } from '@/components/layout/LogoFull'
 
 const sections = [
   {
@@ -31,12 +31,10 @@ export default function GettingStartedPage() {
     <div className="space-y-10">
       <div>
         <div className="flex items-center gap-3 mb-4">
-          <Logo className="w-10 h-10" />
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">HeroUI Playbook</h1>
-            <p className="text-muted-foreground text-sm mt-0.5">Basado en HeroUI — Open Source UI Kit</p>
-          </div>
+          <LogoFull className="h-7" />
+          <h1 className="text-3xl font-bold text-foreground border-l border-border pl-3">Playbook</h1>
         </div>
+        <p className="text-muted-foreground text-sm mb-4">Basado en HeroUI — Open Source UI Kit</p>
         <p className="text-muted-foreground max-w-2xl leading-relaxed">
           Bienvenido al HeroUI Playbook. Esta guía unifica el lenguaje visual y de desarrollo
           del equipo, documentando cada componente con perspectiva de diseño, desarrollo y contenido.
