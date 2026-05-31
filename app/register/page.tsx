@@ -2,7 +2,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
-import { BookOpen, Eye, EyeOff, AlertCircle, CheckCircle, Info } from 'lucide-react'
+import { Eye, EyeOff, AlertCircle, CheckCircle, Info } from 'lucide-react'
+import { Logo } from '@/components/layout/Logo'
 
 function PasswordStrength({ password }: { password: string }) {
   const checks = [
@@ -89,9 +90,7 @@ export default function RegisterPage() {
       <div className="w-full max-w-sm space-y-6">
         <div className="text-center">
           <div className="flex justify-center mb-4">
-            <div className="w-12 h-12 bg-accent rounded-xl flex items-center justify-center">
-              <BookOpen className="w-6 h-6 text-accent-foreground" />
-            </div>
+            <Logo className="w-12 h-12" />
           </div>
           <h1 className="text-2xl font-bold text-foreground">Crear cuenta</h1>
           <p className="text-muted-foreground mt-1 text-sm">Accede al Design System Playbook</p>

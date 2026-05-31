@@ -10,6 +10,7 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { createClient } from '@/lib/supabase/client'
+import { Logo } from './Logo'
 
 interface NavItem {
   label: string
@@ -132,11 +133,9 @@ export function Sidebar({ isAdmin, user }: SidebarProps) {
     >
       {/* Cabecera */}
       <div className="p-4 border-b border-border flex-shrink-0">
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 bg-accent rounded-lg flex items-center justify-center">
-            <BookOpen className="w-4 h-4 text-accent-foreground" />
-          </div>
-          <span className="text-sm font-bold text-foreground">Playbook</span>
+        <div className="flex items-center gap-2.5">
+          <Logo className="w-7 h-7" />
+          <span className="text-sm font-bold text-foreground">HeroUI Playbook</span>
         </div>
       </div>
 

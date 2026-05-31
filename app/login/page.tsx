@@ -3,7 +3,8 @@ import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
-import { BookOpen, Eye, EyeOff, AlertCircle } from 'lucide-react'
+import { Eye, EyeOff, AlertCircle } from 'lucide-react'
+import { Logo } from '@/components/layout/Logo'
 
 function LoginForm() {
   const router = useRouter()
@@ -43,11 +44,9 @@ function LoginForm() {
       <div className="w-full max-w-sm space-y-6">
         <div className="text-center">
           <div className="flex justify-center mb-4">
-            <div className="w-12 h-12 bg-accent rounded-xl flex items-center justify-center">
-              <BookOpen className="w-6 h-6 text-accent-foreground" />
-            </div>
+            <Logo className="w-12 h-12" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">Design System Playbook</h1>
+          <h1 className="text-2xl font-bold text-foreground">HeroUI Playbook</h1>
           <p className="text-muted-foreground mt-1 text-sm">Inicia sesión para acceder</p>
         </div>
 
