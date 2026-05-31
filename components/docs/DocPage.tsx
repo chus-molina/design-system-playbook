@@ -82,7 +82,7 @@ export function DocPage({ title, description, figmaUrl, toc, children }: DocPage
 
 export function SectionTitle({ id, children }: { id: string; children: React.ReactNode }) {
   return (
-    <h2 id={id} className="text-xl font-bold text-foreground mt-10 mb-4 scroll-mt-24 pb-2 border-b border-border">
+    <h2 id={id} className="text-xl font-bold text-foreground mt-12 mb-4 scroll-mt-24 pb-2 border-b border-border first:mt-0">
       {children}
     </h2>
   )
