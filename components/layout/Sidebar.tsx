@@ -1,13 +1,15 @@
 'use client'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import {
   ChevronDown, ChevronRight, BookOpen, Layers, Puzzle, Layout,
   Palette, Type, Maximize, Smile, SquareMousePointer, TextCursor,
-  CreditCard, X, Navigation, FormInput, Grid2X2, Users, Home
+  CreditCard, X, Navigation, FormInput, Grid2X2, Users, Home,
+  LogOut, User
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { createClient } from '@/lib/supabase/client'
 
 interface NavItem {
   label: string
@@ -108,14 +110,28 @@ function NavSection({ item, depth = 0 }: { item: NavItem; depth?: number }) {
 
 interface SidebarProps {
   isAdmin?: boolean
+  user?: { email?: string } | null
 }
 
-export function Sidebar({ isAdmin }: SidebarProps) {
+export function Sidebar({ isAdmin, user }: SidebarProps) {
   const pathname = usePathname()
+  const router = useRouter()
+  const supabase = createClient()
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut()
+    router.push('/login')
+    router.refresh()
+  }
 
   return (
-    <aside className="w-64 min-h-screen border-r border-border flex-shrink-0" style={{ background: 'hsl(var(--sidebar-bg))' }}>
-      <div className="p-4 border-b border-border">
+    <aside
+      className="w-64 h-screen sticky top-0 border-r border-border flex-shrink-0 flex flex-col"
+      style={{ background: 'hsl(var(--sidebar-bg))' }}
+    >
+      {/* Cabecera */}
+      <div className="p-4 border-b border-border flex-shrink-0">
         <div className="flex items-center gap-2">
           <div className="w-7 h-7 bg-accent rounded-lg flex items-center justify-center">
             <BookOpen className="w-4 h-4 text-accent-foreground" />
@@ -124,7 +140,8 @@ export function Sidebar({ isAdmin }: SidebarProps) {
         </div>
       </div>
 
-      <nav className="p-3 flex flex-col gap-1 sidebar-scroll overflow-y-auto" style={{ maxHeight: 'calc(100vh - 112px)' }}>
+      {/* Navegación scrolleable */}
+      <nav className="flex-1 min-h-0 p-3 flex flex-col gap-1 sidebar-scroll overflow-y-auto">
         {navItems.map(item => (
           <NavSection key={item.label} item={item} />
         ))}
@@ -147,6 +164,38 @@ export function Sidebar({ isAdmin }: SidebarProps) {
           </>
         )}
       </nav>
+
+      {/* Bloque de usuario (parte inferior) */}
+      {user && (
+        <div className="relative p-3 border-t border-border flex-shrink-0">
+          {menuOpen && (
+            <div className="absolute bottom-full left-3 right-3 mb-1 bg-card border border-border rounded-lg shadow-lg py-1 z-50">
+              <button
+                onClick={handleSignOut}
+                className="w-full flex items-center gap-2 px-3 py-2 text-sm text-destructive hover:bg-muted transition-colors"
+              >
+                <LogOut className="w-4 h-4" />
+                Cerrar sesión
+              </button>
+            </div>
+          )}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="w-full flex items-center gap-2.5 px-2 py-2 rounded-lg hover:bg-muted transition-colors text-left"
+          >
+            <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-accent-foreground text-xs font-bold flex-shrink-0">
+              {user.email?.[0]?.toUpperCase() ?? <User className="w-4 h-4" />}
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-xs text-muted-foreground leading-tight">
+                {isAdmin ? 'Administrador' : 'Usuario'}
+              </p>
+              <p className="text-sm text-foreground truncate leading-tight">{user.email}</p>
+            </div>
+            <ChevronDown className={cn('w-4 h-4 text-muted-foreground transition-transform flex-shrink-0', menuOpen && 'rotate-180')} />
+          </button>
+        </div>
+      )}
     </aside>
   )
 }

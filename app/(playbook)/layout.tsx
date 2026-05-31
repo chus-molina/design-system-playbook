@@ -21,9 +21,9 @@ export default async function PlaybookLayout({ children }: { children: React.Rea
 
   return (
     <div className="flex min-h-screen bg-background">
-      <Sidebar isAdmin={isAdmin} />
+      <Sidebar isAdmin={isAdmin} user={user} />
       <div className="flex-1 flex flex-col min-w-0">
-        <Header user={user} isAdmin={isAdmin} />
+        <Header isAdmin={isAdmin} />
         <main className="flex-1 p-8 w-full">
           {children}
         </main>
